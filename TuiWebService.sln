@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService", "TuiWebService\TuiWebService.csproj", "{E660D193-89FA-4A16-A6D3-A215ABD485AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.Common", "TuiWebService.Common\TuiWebService.Common.csproj", "{70E531C7-4961-4DE7-8627-4BEE9A6EC623}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.TuiProvider", "TuiWebService.TuiProvider\TuiWebService.TuiProvider.csproj", "{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E660D193-89FA-4A16-A6D3-A215ABD485AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E660D193-89FA-4A16-A6D3-A215ABD485AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E660D193-89FA-4A16-A6D3-A215ABD485AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E660D193-89FA-4A16-A6D3-A215ABD485AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E531C7-4961-4DE7-8627-4BEE9A6EC623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E531C7-4961-4DE7-8627-4BEE9A6EC623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E531C7-4961-4DE7-8627-4BEE9A6EC623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E531C7-4961-4DE7-8627-4BEE9A6EC623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44E3608A-CD23-4C1E-91D8-A0AA18AFC9CA}
+	EndGlobalSection
+EndGlobal
