@@ -22,7 +22,7 @@ namespace TuiWebService.Common
         /// <param name="numberPeople">Кол-во человек</param>
         /// <param name="sortinRules">Правило сортировки</param>
         /// <returns></returns>
-        Task<IList<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
+        Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
             int nightsTo,
             int numberPeople, SortinRules sortinRules);
 

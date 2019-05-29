@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TuiWebService</name>
+    </assembly>
+    <members>
+        <member name="M:TuiWebService.Controllers.CityController.GetAsync">
+            <summary>
+            Получение списка городов
+            </summary>
+            <returns></returns>
+            <response code="200">Возращает список городов</response>
+            <response code="500">Ошибка при получении данных</response>
+        </member>
+        <member name="M:TuiWebService.Controllers.CountryController.GetAsync">
+            <summary>
+            Получение списка стран
+            </summary>
+            <returns></returns>
+            <response code="200">Возращает список стран</response>
+            <response code="500">Ошибка при получении данных</response>
+        </member>
+        <member name="M:TuiWebService.Controllers.DepartureCityController.GetAsync">
+            <summary>
+            Получение городов вылета
+            </summary>
+            <returns></returns>
+            <response code="200">Возращает список городов вылета</response>
+            <response code="500">Ошибка при получении данных</response>
+        </member>
+        <member name="M:TuiWebService.Controllers.HotelController.GetAsync">
+            <summary>
+            Получение списка отелей
+            </summary>
+            <returns></returns>
+            <response code="200">Возращает список отелей</response>
+            <response code="500">Ошибка при получении данных</response>
+        </member>
+        <member name="M:TuiWebService.Controllers.TourController.GetAsync(System.Int32,System.Int32,System.DateTime,System.Int32,System.Int32,System.Int32,TuiWebService.Common.SortinRules)">
+            <summary>
+            Поиск туров
+            </summary>
+            <param name="departureCityId">Город вылета</param>
+            <param name="tourCityId">Город тура</param>
+            <param name="begTourDate">Дата начало тура</param>
+            <param name="nightsFrom">Кол-во ночей от</param>
+            <param name="nightsTo">Кол-во ночей до</param>
+            <param name="numberPeople">Кол-во человек</param>
+            <param name="sortingRules">Параметр сортировки byPrice, byPriceDesc, byName, byDate, by DateDesc</param>
+            <returns></returns>
+            <response code="200">Возращает список туров</response>
+            <response code="400">Невалидные параметры поиска</response>
+            <response code="500">Ошибка при получении данных</response>
+        </member>
+        <member name="T:TuiWebService.ServiceProperties">
+            <summary>
+            Свойства сервиса
+            </summary>
+        </member>
+        <member name="P:TuiWebService.ServiceProperties.Version">
+            <summary>
+            Версия
+            </summary>
+        </member>
+        <member name="P:TuiWebService.ServiceProperties.Language">
+            <summary>
+            Язык
+            </summary>
+        </member>
+        <member name="T:TuiWebService.ServiceSettings">
+            <summary>
+            Настройки сервиса
+            </summary>
+        </member>
+        <member name="P:TuiWebService.ServiceSettings.Timeout">
+            <summary>
+            Timeout в миллисекундах
+            </summary>
+        </member>
+        <member name="P:TuiWebService.ServiceSettings.Address">
+            <summary>
+            Адрес, на котором крутится сервис
+            </summary>
+        </member>
+    </members>
+</doc>

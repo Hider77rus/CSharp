@@ -15,19 +15,19 @@ namespace TuiWebService.Common
         /// Получить города
         /// </summary>
         /// <returns></returns>
-        Task<IList<City>> GetCities();
+        Task<IEnumerable<City>> GetCities();
 
         /// <summary>
         /// Получить страны
         /// </summary>
         /// <returns></returns>
-        Task<IList<Country>> GetCountries();
+        Task<IEnumerable<Country>> GetCountries();
 
         /// <summary>
         /// Получить города вылета
         /// </summary>
         /// <returns></returns>
-        Task<IList<City>> GetDepartureCities();
+        Task<IEnumerable<City>> GetDepartureCities();
 
         /// <summary>
         /// Получить отель по идентификатору
@@ -40,6 +40,6 @@ namespace TuiWebService.Common
         /// Получение списка отелей
         /// </summary>
         /// <returns></returns>
-        Task<IList<Hotel>> GetHotels();
+        Task<IEnumerable<Hotel>> GetHotels();
     }
 }

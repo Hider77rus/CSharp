@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,20 +24,49 @@ namespace TuiWebService.Controllers
         /// <summary>
         /// Поиск туров
         /// </summary>
-        /// <param name="departureCityId"></param>
-        /// <param name="tourCityId"></param>
-        /// <param name="begTourTime"></param>
-        /// <param name="nightsFrom"></param>
-        /// <param name="nightsTo"></param>
-        /// <param name="numberPeople"></param>
-        /// <param name="sortingRules">параметр сортировки byPrice, byPriceDesc, byName, byDate, by DateDesc</param>
+        /// <param name="departureCityId">Город вылета</param>
+        /// <param name="tourCityId">Город тура</param>
+        /// <param name="begTourDate">Дата начало тура</param>
+        /// <param name="nightsFrom">Кол-во ночей от</param>
+        /// <param name="nightsTo">Кол-во ночей до</param>
+        /// <param name="numberPeople">Кол-во человек</param>
+        /// <param name="sortingRules">Параметр сортировки byPrice, byPriceDesc, byName, byDate, by DateDesc</param>
         /// <returns></returns>
+        /// <response code="200">Возращает список туров</response>
+        /// <response code="400">Невалидные параметры поиска</response>
+        /// <response code="500">Ошибка при получении данных</response>
         [HttpGet]
-        public async Task<IEnumerable<Tour>> GetAsync(int departureCityId, int tourCityId, DateTime begTourTime, int nightsFrom,
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetAsync(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
             int nightsTo, int numberPeople, SortinRules sortingRules)
         {
-            return await _searchService.GetTours(departureCityId, tourCityId, begTourTime, nightsFrom, nightsTo, numberPeople,
-                sortingRules);
+            var status = HttpStatusCode.OK;
+            IEnumerable<Tour> response = new List<Tour>();
+
+            if (begTourDate < DateTime.Now || 
+                nightsFrom > nightsTo || 
+                numberPeople < 1)
+            {
+                return BadRequest();
+            }
+            
+
+            try
+            {
+                response = await _searchService.GetTours(departureCityId, tourCityId, begTourDate, nightsFrom, nightsTo, numberPeople,
+                    sortingRules);
+            }
+            catch (Exception e)
+            {
+                status = HttpStatusCode.InternalServerError;
+            }
+
+            return new ObjectResult(response)
+            {
+                StatusCode = (int)status
+            };
 
         }
 

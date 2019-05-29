@@ -30,6 +30,6 @@ namespace TuiWebService.Common.Models
         /// <summary>
         /// Год постройки
         /// </summary>
-        public DateTime BuildDate { get; set; }
+        public int BuildYear { get; set; }
     }
 }

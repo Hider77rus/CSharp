@@ -10,10 +10,10 @@ namespace TuiWebService.TuiProvider
     public class DictService : IDictService
     {
 
-        private IList<City> _cities = new List<City>();
-        private IList<Country> _countries = new List<Country>();
-        private IList<City> _departureCities = new List<City>();
-        private Dictionary<int, Hotel> _hotels = new Dictionary<int, Hotel>();
+        private readonly IList<City> _cities = new List<City>();
+        private readonly IList<Country> _countries = new List<Country>();
+        private readonly IList<City> _departureCities = new List<City>();
+        private readonly Dictionary<int, Hotel> _hotels = new Dictionary<int, Hotel>();
 
         public DictService()
         {
@@ -21,43 +21,39 @@ namespace TuiWebService.TuiProvider
         }
 
         /// <inheritdoc />
-        public async Task<IList<City>> GetCities()
+        public async Task<IEnumerable<City>> GetCities()
         {
-            var task = new Task<IList<City>>(() => _cities);
-            task.Start();
-            return await task;
+            await Task.Yield();
+            return _cities;
+
         }
 
         /// <inheritdoc />
-        public async Task<IList<Country>> GetCountries()
+        public async Task<IEnumerable<Country>> GetCountries()
         {
-            var task = new Task<IList<Country>>(() => _countries);
-            task.Start();
-            return await task;
+            await Task.Yield();
+            return _countries;
         }
 
         /// <inheritdoc />
-        public async Task<IList<City>> GetDepartureCities()
+        public async Task<IEnumerable<City>> GetDepartureCities()
         {
-            var task = new Task<IList<City>>(() => _departureCities);
-            task.Start();
-            return await task;
+            await Task.Yield();
+            return _departureCities;
         }
 
         /// <inheritdoc />
         public async Task<Hotel> GetHotel(int id)
         {
-            var task = new Task<Hotel>(() => _hotels[id]);
-            task.Start();
-            return await task;
+            await Task.Yield();
+            return _hotels[id];
         }
 
         /// <inheritdoc />
-        public async Task<IList<Hotel>> GetHotels()
+        public async Task<IEnumerable<Hotel>> GetHotels()
         {
-            var task = new Task<IList<Hotel>>(() => _hotels.Values.ToList());
-            task.Start();
-            return await task;
+            await Task.Yield();
+            return _hotels.Values;
         }
 
         private void GenerateData()
@@ -125,17 +121,17 @@ namespace TuiWebService.TuiProvider
         private void GenerateHotels()
         {
             int cnt = 1;
+            var rnd = new Random();
             while (cnt <= 500)
             {
-                var rnd = new Random();
-                DateTime start = new DateTime(1995, 1, 1);
-                int range = (DateTime.Today - start).Days;
+                int start = 1995;
+                int range = DateTime.Today.Year - start;
 
                 var hotel = new Hotel
                 {
                     Id = cnt,
                     Address = $"Адрес отеля {cnt}",
-                    BuildDate = start.AddDays(rnd.Next(range)),
+                    BuildYear = start + rnd.Next(range),
                     Name = $"Отель №{cnt}",
                     City = _cities[rnd.Next(_cities.Count)]
                 };
