@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService", "TuiWebService\TuiWebService.csproj", "{E660D193-89FA-4A16-A6D3-A215ABD485AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuiWebService", "TuiWebService\TuiWebService.csproj", "{E660D193-89FA-4A16-A6D3-A215ABD485AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.Common", "TuiWebService.Common\TuiWebService.Common.csproj", "{70E531C7-4961-4DE7-8627-4BEE9A6EC623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuiWebService.Common", "TuiWebService.Common\TuiWebService.Common.csproj", "{70E531C7-4961-4DE7-8627-4BEE9A6EC623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.TuiProvider", "TuiWebService.TuiProvider\TuiWebService.TuiProvider.csproj", "{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuiWebService.TuiProvider", "TuiWebService.TuiProvider\TuiWebService.TuiProvider.csproj", "{C801CD7E-06C9-4619-A79D-D7FA44B84FA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.TuiProvider.Tests", "TuiWebService.TuiProvider.Tests\TuiWebService.TuiProvider.Tests.csproj", "{8C372B16-988C-4752-AAF7-BF59EBFB90E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuiWebService.TuiProvider.Tests", "TuiWebService.TuiProvider.Tests\TuiWebService.TuiProvider.Tests.csproj", "{8C372B16-988C-4752-AAF7-BF59EBFB90E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.GlobalProvider", "TuiWebService.GlobalProvider\TuiWebService.GlobalProvider.csproj", "{6BED59BE-FC06-48BB-9FF1-C55E40E318FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuiWebService.ToursAggregator", "TuiWebService.ToursAggregator\TuiWebService.ToursAggregator.csproj", "{78C411DA-F1FD-4C6F-97A1-8792506E4358}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{8C372B16-988C-4752-AAF7-BF59EBFB90E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C372B16-988C-4752-AAF7-BF59EBFB90E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C372B16-988C-4752-AAF7-BF59EBFB90E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BED59BE-FC06-48BB-9FF1-C55E40E318FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BED59BE-FC06-48BB-9FF1-C55E40E318FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BED59BE-FC06-48BB-9FF1-C55E40E318FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BED59BE-FC06-48BB-9FF1-C55E40E318FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C411DA-F1FD-4C6F-97A1-8792506E4358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C411DA-F1FD-4C6F-97A1-8792506E4358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C411DA-F1FD-4C6F-97A1-8792506E4358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C411DA-F1FD-4C6F-97A1-8792506E4358}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

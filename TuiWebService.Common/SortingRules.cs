@@ -7,7 +7,7 @@ namespace TuiWebService.Common
     /// <summary>
     /// Правила сортировки
     /// </summary>
-    public enum SortinRules
+    public enum SortingRules
     {
         /// <summary>
         /// По возрастанию цены

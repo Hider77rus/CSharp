@@ -12,8 +12,9 @@ namespace TuiWebService.TuiProvider.Tests
         private class SearchService : ISearchService
         {
             public bool HasCalledGetTours { get; private set; } = false;
-            public Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom, int nightsTo, int numberPeople,
-                SortinRules sortingRules)
+            public Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate,
+                int nightsFrom, int nightsTo, int numberPeople,
+                SortingRules sortingRules)
             {
                 HasCalledGetTours = true;
                 return null;

@@ -29,7 +29,7 @@ namespace TuiWebService.TuiProvider.Tests
             var hasTours = false;
 
             var tour = await _searchService.GetTours(departureCityId: 1, tourCityId: 1, begTourDate: searchDay, nightsFrom: 4,
-                nightsTo: 12, numberPeople: 2, sortinRules: 0);
+                nightsTo: 12, numberPeople: 2, sortingRules: 0);
 
             if (tour.ToList().Count > 0)
                 hasTours = true;

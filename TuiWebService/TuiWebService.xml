@@ -36,7 +36,7 @@
             <response code="200">Возращает список отелей</response>
             <response code="500">Ошибка при получении данных</response>
         </member>
-        <member name="M:TuiWebService.Controllers.TourController.GetAsync(System.Int32,System.Int32,System.DateTime,System.Int32,System.Int32,System.Int32,TuiWebService.Common.SortinRules)">
+        <member name="M:TuiWebService.Controllers.TourController.GetAsync(System.Int32,System.Int32,System.DateTime,System.Int32,System.Int32,System.Int32,TuiWebService.Common.SortingRules)">
             <summary>
             Поиск туров
             </summary>
@@ -65,21 +65,6 @@
         <member name="P:TuiWebService.ServiceProperties.Language">
             <summary>
             Язык
-            </summary>
-        </member>
-        <member name="T:TuiWebService.ServiceSettings">
-            <summary>
-            Настройки сервиса
-            </summary>
-        </member>
-        <member name="P:TuiWebService.ServiceSettings.Timeout">
-            <summary>
-            Timeout в миллисекундах
-            </summary>
-        </member>
-        <member name="P:TuiWebService.ServiceSettings.Address">
-            <summary>
-            Адрес, на котором крутится сервис
             </summary>
         </member>
     </members>

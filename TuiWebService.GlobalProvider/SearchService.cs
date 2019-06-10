@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TuiWebService.Common;
 using TuiWebService.Common.Models;
 
-namespace TuiWebService.TuiProvider
+namespace TuiWebService.GlobalProvider
 {
     public class SearchService : ISearchService
     {
@@ -64,7 +64,7 @@ namespace TuiWebService.TuiProvider
 
                 var tour = new Tour()
                 {
-                    Airline = "AsurAir",
+                    Airline = "Pobeda",
                     ArrivalDate = arrDate.AddDays(nights),
                     CheckInDate = arrDate.AddDays(_rnd.Next(2)),
                     DepartureCity = departureCities[_rnd.Next(departureCities.Count)],
@@ -75,7 +75,7 @@ namespace TuiWebService.TuiProvider
                     PricePerPerson = _rnd.Next(100, 1000),
                     Room = "Standart"
                 };
-                
+
                 _tours.Add(tour);
                 cnt++;
             }

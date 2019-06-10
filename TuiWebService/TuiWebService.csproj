@@ -24,6 +24,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TuiWebService.Common\TuiWebService.Common.csproj" />
+    <ProjectReference Include="..\TuiWebService.GlobalProvider\TuiWebService.GlobalProvider.csproj" />
+    <ProjectReference Include="..\TuiWebService.ToursAggregator\TuiWebService.ToursAggregator.csproj" />
     <ProjectReference Include="..\TuiWebService.TuiProvider\TuiWebService.TuiProvider.csproj" />
   </ItemGroup>
 

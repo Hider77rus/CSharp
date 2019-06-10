@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TuiWebService.Common;
 using TuiWebService.Common.Models;
+using TuiWebService.ToursAggregator;
 
 namespace TuiWebService.Controllers
 {
@@ -15,8 +16,8 @@ namespace TuiWebService.Controllers
     public class TourController : ControllerBase
     {
 
-        private readonly ISearchService _searchService;
-        public TourController(ISearchService searchService)
+        private readonly ISearchServiceAggregator _searchService;
+        public TourController(ISearchServiceAggregator searchService)
         {
             _searchService = searchService;
         }
@@ -40,7 +41,7 @@ namespace TuiWebService.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetAsync(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
-            int nightsTo, int numberPeople, SortinRules sortingRules)
+            int nightsTo, int numberPeople, SortingRules sortingRules)
         {
             var status = HttpStatusCode.OK;
             IEnumerable<Tour> response = new List<Tour>();
@@ -51,7 +52,6 @@ namespace TuiWebService.Controllers
             {
                 return BadRequest();
             }
-            
 
             try
             {

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using TuiWebService.Common;
 using TuiWebService.Common.Models;
 
-namespace TuiWebService.TuiProvider
+namespace TuiWebService.GlobalProvider
 {
-    public class DictService : ITuiDictService
+    public class DictService : IGlobalDictService
     {
 
         private readonly IList<City> _cities = new List<City>();
@@ -136,7 +136,7 @@ namespace TuiWebService.TuiProvider
                     City = _cities[rnd.Next(_cities.Count)]
                 };
 
-                _hotels.Add(hotel.Id,hotel);
+                _hotels.Add(hotel.Id, hotel);
                 cnt++;
             }
         }

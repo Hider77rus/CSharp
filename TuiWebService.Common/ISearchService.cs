@@ -20,11 +20,11 @@ namespace TuiWebService.Common
         /// <param name="nightsFrom">Кол-во ночей От</param>
         /// <param name="nightsTo">Кол-во ночей До</param>
         /// <param name="numberPeople">Кол-во человек</param>
-        /// <param name="sortinRules">Правило сортировки</param>
+        /// <param name="sortingRules"></param>
         /// <returns></returns>
         Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
             int nightsTo,
-            int numberPeople, SortinRules sortinRules);
+            int numberPeople, SortingRules sortingRules);
 
     }
 }

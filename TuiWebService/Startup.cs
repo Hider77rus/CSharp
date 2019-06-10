@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
 using TuiWebService.Common;
-using TuiWebService.TuiProvider;
+using TuiWebService.ToursAggregator;
 
 namespace TuiWebService
 {
@@ -36,8 +36,14 @@ namespace TuiWebService
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddLogging(logBuilder => logBuilder.AddSerilog(dispose: true));
-            services.AddSingleton<IDictService, DictService>();
-            services.AddSingleton<ISearchService, SearchService>();
+
+            services.Configure<ServiceSettings>(Configuration.GetSection(nameof(ServiceSettings)));
+
+            services.AddSingleton<ISearchServiceAggregator, SearchService>();
+            services.AddSingleton<IDictService, TuiProvider.DictService>(); //Оставлю справчник общим.
+            services.AddSingleton<ISearchService, TuiProvider.SearchService>();
+            services.AddSingleton<ISearchService, GlobalProvider.SearchService>();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -60,7 +66,7 @@ namespace TuiWebService
             });
 
             var logger = serviceProvider.GetRequiredService<ILoggerFactory>().CreateLogger(typeof(Startup));
-            logger.LogInformation("Test");
+            logger.LogInformation("Start Service");
 
             if (env.IsDevelopment())
             {
