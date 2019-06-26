@@ -12,9 +12,7 @@ namespace TuiWebService.TuiProvider.Tests
         private class SearchService : ISearchService
         {
             public bool HasCalledGetTours { get; private set; } = false;
-            public Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate,
-                int nightsFrom, int nightsTo, int numberPeople,
-                SortingRules sortingRules)
+            public Task<IEnumerable<TourPriceOffer>> GetTours(TourSearchRequest request)
             {
                 HasCalledGetTours = true;
                 return null;
@@ -25,8 +23,10 @@ namespace TuiWebService.TuiProvider.Tests
         [Fact]
         public void TestCommonCallsGetTours()
         {
+            var tourRequest  = new TourSearchRequest();
+
             var searchService = new SearchService();
-            searchService.GetTours(1, 2, DateTime.Today, 5, 8, 2, 0);
+            searchService.GetTours(tourRequest);
             Assert.True(searchService.HasCalledGetTours);
         }
     }

@@ -21,46 +21,58 @@ namespace TuiWebService.ToursAggregator
             _timeout = options.CurrentValue.Timeout;
         }
 
-        public async Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate,
-            int nightsFrom, int nightsTo, int numberPeople,
-            SortingRules sortingRules)
+        public async Task<IEnumerable<TourPriceOffer>> GetTours(TourSearchRequest request)
         {
             var tasks = _searchServices.Select(s =>
                 TryGetTours(
-                    s.GetTours(departureCityId, tourCityId, begTourDate, nightsFrom, nightsTo, numberPeople,
-                        sortingRules),
+                    s.GetTours(request),
                     _timeout));
 
             var tasksResult = await Task.WhenAll(tasks);
 
-            if (tasksResult.Any(x => x.IsTimeout == false))
+            if (tasksResult.Any(x => x.HasError == false))
             {
-                return tasksResult.Where(x => x.IsTimeout == false)
+                return tasksResult.Where(x => x.HasError == false)
                     .SelectMany(s => s.Tours)
-                    .OrderBy(sortingRules)
+                    .OrderBy(request.SortingRules)
                     .Take(1000);
             }
-            else
+            else 
             {
-                throw new TimeoutException("The operation has timed out.");
+                throw tasksResult.First().Exception;
             }
 
         }
 
-        private async Task<TryGetToursResult> TryGetTours(Task<IEnumerable<Tour>> task, int timeout)
+        private static async Task<TryGetToursResult> TryGetTours(Task<IEnumerable<TourPriceOffer>> task, int timeout)
         {
-            using (var timeoutCancellationTokenSource = new CancellationTokenSource())
+            try
             {
-                var completedTask = await Task.WhenAny(task, Task.Delay(timeout, timeoutCancellationTokenSource.Token));
-                if (completedTask == task)
+                using (var tokenSource = new CancellationTokenSource())
                 {
-                    timeoutCancellationTokenSource.Cancel();
-                    return new TryGetToursResult(){IsTimeout = false, Tours = await task };
+                    var completedTask = await Task.WhenAny(task, Task.Delay(timeout, tokenSource.Token));
+                    if (completedTask == task)
+                    {
+                        tokenSource.Cancel();
+                        var tours = await task;
+
+                        //Проверка туров на null
+                        if (tours == null)
+                        {
+                            return new TryGetToursResult { HasError = true, Exception = new NullReferenceException() };
+                        }
+
+                        return new TryGetToursResult { Tours = tours , HasError = false};
+                    }
+                    else
+                    {
+                        return new TryGetToursResult { HasError = true, Exception = new TimeoutException("The operation has timed out.") };
+                    }
                 }
-                else
-                {
-                    return new TryGetToursResult(){IsTimeout = true};
-                }
+            }
+            catch (Exception e)
+            {
+                return new TryGetToursResult {HasError = true, Exception = e};
             }
         }
     }

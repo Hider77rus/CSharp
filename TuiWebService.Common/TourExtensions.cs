@@ -12,19 +12,19 @@ namespace TuiWebService.Common
         /// <param name="tours"></param>
         /// <param name="rules"></param>
         /// <returns></returns>
-        public static IEnumerable<Tour> OrderBy(this IEnumerable<Tour> tours, SortingRules rules)
+        public static IEnumerable<TourPriceOffer> OrderBy(this IEnumerable<TourPriceOffer> tours, SortingRules rules)
         {
             switch (rules)
             {
-                case SortingRules.byDate:
+                case SortingRules.ByDate:
                     return tours.OrderBy(s => s.DepartureDate);
-                case SortingRules.byDateDesc:
+                case SortingRules.ByDateDesc:
                     return tours.OrderByDescending(s => s.DepartureDate);
-                case SortingRules.byName:
+                case SortingRules.ByName:
                     return tours.OrderBy(s => s.Hotel.Name);
-                case SortingRules.byPrice:
+                case SortingRules.ByPrice:
                     return tours.OrderBy(s => s.PricePerPerson);
-                case SortingRules.byPriceDesc:
+                case SortingRules.ByPriceDesc:
                     return tours.OrderByDescending(s => s.PricePerPerson);
                 default:
                     return tours.OrderBy(s => s.DepartureDate);

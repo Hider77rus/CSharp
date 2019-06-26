@@ -36,17 +36,11 @@
             <response code="200">Возращает список отелей</response>
             <response code="500">Ошибка при получении данных</response>
         </member>
-        <member name="M:TuiWebService.Controllers.TourController.GetAsync(System.Int32,System.Int32,System.DateTime,System.Int32,System.Int32,System.Int32,TuiWebService.Common.SortingRules)">
+        <member name="M:TuiWebService.Controllers.TourController.GetAsync(TuiWebService.Common.Models.TourSearchRequest)">
             <summary>
             Поиск туров
             </summary>
-            <param name="departureCityId">Город вылета</param>
-            <param name="tourCityId">Город тура</param>
-            <param name="begTourDate">Дата начало тура</param>
-            <param name="nightsFrom">Кол-во ночей от</param>
-            <param name="nightsTo">Кол-во ночей до</param>
-            <param name="numberPeople">Кол-во человек</param>
-            <param name="sortingRules">Параметр сортировки byPrice, byPriceDesc, byName, byDate, by DateDesc</param>
+            <param name="tourRequest">Параметры поиска</param>
             <returns></returns>
             <response code="200">Возращает список туров</response>
             <response code="400">Невалидные параметры поиска</response>

@@ -14,17 +14,9 @@ namespace TuiWebService.Common
         /// <summary>
         /// Получение туров
         /// </summary>
-        /// <param name="departureCityId">Идентификатор города вылета</param>
-        /// <param name="tourCityId">Идентификатор города тура</param>
-        /// <param name="begTourDate"></param>
-        /// <param name="nightsFrom">Кол-во ночей От</param>
-        /// <param name="nightsTo">Кол-во ночей До</param>
-        /// <param name="numberPeople">Кол-во человек</param>
-        /// <param name="sortingRules"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
-            int nightsTo,
-            int numberPeople, SortingRules sortingRules);
+        Task<IEnumerable<TourPriceOffer>> GetTours(TourSearchRequest request);
 
     }
 }

@@ -11,7 +11,7 @@ namespace TuiWebService.GlobalProvider
 {
     public class SearchService : ISearchService
     {
-        private readonly IList<Tour> _tours = new List<Tour>();
+        private readonly IList<TourPriceOffer> _tours = new List<TourPriceOffer>();
         private readonly IDictService _dictService;
 
         private readonly Random _rnd = new Random();
@@ -22,10 +22,7 @@ namespace TuiWebService.GlobalProvider
         }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<Tour>> GetTours(int departureCityId, int tourCityId, DateTime begTourDate,
-            int nightsFrom,
-            int nightsTo,
-            int numberPeople, SortingRules sortingRules)
+        public async Task<IEnumerable<TourPriceOffer>> GetTours(TourSearchRequest request)
         {
 
             if (_tours.Count == 0)
@@ -33,14 +30,14 @@ namespace TuiWebService.GlobalProvider
 
             await Task.Delay(_rnd.Next(3000, 20000));
 
-            return _tours.Where(w => w.DepartureCity.Id == departureCityId &&
-                                      w.Hotel.City.Id == tourCityId &&
-                                      w.DepartureDate == begTourDate &&
-                                      w.Nights >= nightsFrom &&
-                                      w.Nights <= nightsTo &&
-                                      w.MaxRoomPeople >= numberPeople
+            return _tours.Where(w => w.DepartureCity.Id == request.DepartureCityId &&
+                                      w.Hotel.City.Id == request.TourCityId &&
+                                      w.DepartureDate == request.BegTourDate &&
+                                      w.Nights >= request.NightsFrom &&
+                                      w.Nights <= request.NightsTo &&
+                                      w.MaxRoomPeople >= request.NumberPeople
                         )
-                        .OrderBy(sortingRules)
+                        .OrderBy(request.SortingRules)
                         .Take(1000);
         }
 
@@ -62,7 +59,7 @@ namespace TuiWebService.GlobalProvider
                 var arrDate = RandomDay();
                 var nights = _rnd.Next(3, 16);
 
-                var tour = new Tour()
+                var tour = new TourPriceOffer
                 {
                     Airline = "Pobeda",
                     ArrivalDate = arrDate.AddDays(nights),

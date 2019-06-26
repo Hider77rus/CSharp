@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TuiWebService.Common;
@@ -17,46 +18,50 @@ namespace TuiWebService.Controllers
     {
 
         private readonly ISearchServiceAggregator _searchService;
-        public TourController(ISearchServiceAggregator searchService)
+        private readonly IMapper _mapper;
+        public TourController(ISearchServiceAggregator searchService, IMapper mapper)
         {
             _searchService = searchService;
+            _mapper = mapper;
+
         }
 
         /// <summary>
         /// Поиск туров
         /// </summary>
-        /// <param name="departureCityId">Город вылета</param>
-        /// <param name="tourCityId">Город тура</param>
-        /// <param name="begTourDate">Дата начало тура</param>
-        /// <param name="nightsFrom">Кол-во ночей от</param>
-        /// <param name="nightsTo">Кол-во ночей до</param>
-        /// <param name="numberPeople">Кол-во человек</param>
-        /// <param name="sortingRules">Параметр сортировки byPrice, byPriceDesc, byName, byDate, by DateDesc</param>
+        /// <param name="tourRequest">Параметры поиска</param>
         /// <returns></returns>
         /// <response code="200">Возращает список туров</response>
         /// <response code="400">Невалидные параметры поиска</response>
         /// <response code="500">Ошибка при получении данных</response>
-        [HttpGet]
+        [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetAsync(int departureCityId, int tourCityId, DateTime begTourDate, int nightsFrom,
-            int nightsTo, int numberPeople, SortingRules sortingRules)
+        public async Task<IActionResult> GetAsync(TourSearchRequest tourRequest)
         {
             var status = HttpStatusCode.OK;
             IEnumerable<Tour> response = new List<Tour>();
 
-            if (begTourDate < DateTime.Now || 
-                nightsFrom > nightsTo || 
-                numberPeople < 1)
+            if (tourRequest.BegTourDate < DateTime.Now ||
+                tourRequest.NightsFrom > tourRequest.NightsTo ||
+                tourRequest.NumberPeople < 1)
             {
                 return BadRequest();
             }
 
             try
             {
-                response = await _searchService.GetTours(departureCityId, tourCityId, begTourDate, nightsFrom, nightsTo, numberPeople,
-                    sortingRules);
+                var priceOffers = await _searchService.GetTours(tourRequest);
+
+                //Подсчитываем цену за тур на запрошенное кол-во людей.
+                response = priceOffers.Select(offer => 
+                    _mapper.Map<TourPriceOffer, Tour>(offer,
+                        opt => opt.AfterMap((src, dest) =>
+                        {
+                            dest.Price = src.PricePerPerson * tourRequest.NumberPeople;
+                            dest.PeopleCount = tourRequest.NumberPeople;
+                        })));
             }
             catch (Exception e)
             {

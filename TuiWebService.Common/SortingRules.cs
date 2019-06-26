@@ -12,22 +12,22 @@ namespace TuiWebService.Common
         /// <summary>
         /// По возрастанию цены
         /// </summary>
-        byPrice = 0,
+        ByPrice = 0,
         /// <summary>
         /// По убыванию цены
         /// </summary>
-        byPriceDesc = 1,
+        ByPriceDesc = 1,
         /// <summary>
         /// По имени
         /// </summary>
-        byName = 2,
+        ByName = 2,
         /// <summary>
         /// По возрастанию даты
         /// </summary>
-        byDate = 3,
+        ByDate = 3,
         /// <summary>
         /// По убыванию даты
         /// </summary>
-        byDateDesc = 4
+        ByDateDesc = 4
     } 
 }

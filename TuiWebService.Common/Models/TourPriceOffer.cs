@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TuiWebService.Common.Models
 {
     /// <summary>
-    /// Ценовое предложение с учетом кол-ва людей
+    /// Ценовое предложение по туру
     /// </summary>
-    public class Tour
+    public class TourPriceOffer
     {
         /// <summary>
         /// Отель
@@ -58,15 +56,5 @@ namespace TuiWebService.Common.Models
         /// Максимальное кол-во человек в номере 
         /// </summary>
         public int MaxRoomPeople { get; set; }
-
-        /// <summary>
-        /// Кол-во человек
-        /// </summary>
-        public int PeopleCount { get; set; }
-
-        /// <summary>
-        /// Цена тура
-        /// </summary>
-        public decimal Price { get; set; }
     }
 }

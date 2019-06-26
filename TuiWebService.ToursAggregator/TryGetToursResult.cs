@@ -5,9 +5,14 @@ using TuiWebService.Common.Models;
 
 namespace TuiWebService.ToursAggregator
 {
+    /// <summary>
+    /// Резульатат попытки получения данных у поставщика
+    /// </summary>
     class TryGetToursResult
     {
-        public bool IsTimeout { get; set; }
-        public IEnumerable<Tour> Tours { get; set; }
+        public IEnumerable<TourPriceOffer> Tours { get; set; }
+        public bool HasError { get; set; }
+        public Exception Exception { get; set; }
+        
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TuiWebService.Common;
+using TuiWebService.Common.Models;
 using Xunit;
 
 namespace TuiWebService.TuiProvider.Tests
@@ -26,10 +27,10 @@ namespace TuiWebService.TuiProvider.Tests
         public async void TestCommonCallsGetTours()
         {
             var searchDay = DateTime.Today.AddDays(1);
+            var tourRequest = new TourSearchRequest();
             var hasTours = false;
 
-            var tour = await _searchService.GetTours(departureCityId: 1, tourCityId: 1, begTourDate: searchDay, nightsFrom: 4,
-                nightsTo: 12, numberPeople: 2, sortingRules: 0);
+            var tour = await _searchService.GetTours(tourRequest);
 
             if (tour.ToList().Count > 0)
                 hasTours = true;
